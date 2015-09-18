@@ -9,9 +9,16 @@ var port    = process.env.PORT || 1337; // heroku define port or use 1337 1000
 var server  = new Hapi.Server();
 var ip      = require('./api/lib/lanip');
 
+var plugins = [
+  { register: Basic },
+  { register: AuthJWT },
+  require('inert'),  // serve static content
+  require('vision')  // views
+]
+
 server.connection({ host : ip, port: port, routes: { cors: true } });
 
-server.register([ {register: Basic}, {register: AuthJWT} ], function (err) {
+server.register(plugins, function (err) {
 
   server.auth.strategy('basic', 'basic', {
     validateFunc: require('./api/lib/auth_basic_validate.js')
@@ -38,7 +45,8 @@ server.register([ {register: Basic}, {register: AuthJWT} ], function (err) {
 
 });
 
-server.start();
-console.log('Now Visit: http://' + ip + ':' +port);
+server.start(function() {
+  console.log('Now Visit: http://' + ip + ':' +port);
+});
 
 module.exports = server;

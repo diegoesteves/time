@@ -3,6 +3,7 @@ var server = require("../../web.js");
 var dir    = __dirname.split('/')[__dirname.split('/').length-1];
 var file   = dir + __filename.replace(__dirname, '') + " -> ";
 var email  = 'dwyl.test+auth_basic' +Math.random()+'@gmail.com';
+
 test(file + "POST /login 401 for un-registered person", function(t) {
   var email      = "unregistered@awesome.io";
   var password   = "PinkFluffyUnicorns";
@@ -15,7 +16,7 @@ test(file + "POST /login 401 for un-registered person", function(t) {
   server.inject(options, function(res) {
     t.equal(res.statusCode, 401, "Unregistered Cannot Login");
     t.end();
-    server.stop();
+    server.stop(function(){});
   });
 });
 
@@ -40,7 +41,7 @@ test(file + "Create new person " +email +" and log in", function(t) {
       // console.log(' - - - - - - - - - - - - - - - - - - - - - - ')
       t.equal(res.statusCode, 200, "Login Success!!");
       t.end();
-      server.stop();
+      server.stop(function(){});
     });
   });
 });
@@ -57,6 +58,6 @@ test(file + "Attempt to /login using incorrect password", function(t) {
     // console.log(res.result)
     t.equal(res.statusCode, 401, "Fails (as expected) MSG: " + res.result.message);
     t.end();
-    server.stop();
+    server.stop(function(){});
   });
 });

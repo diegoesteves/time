@@ -20,7 +20,7 @@ test(file + "CREATE a NEW Timer without a desc (which we will update below)", fu
       t.equal(response.statusCode, 200, "New Timer Created: "+response.result.start);
       timer = response.result;
       t.end();
-      server.stop();
+      server.stop(function(){  });
     });
   });
 });
@@ -43,7 +43,7 @@ test(file + "POST /timer/upsert to set a description", function(t) {
       + response.result.desc +'\n');
     t.equal(response.result.desc, updated.desc, "Timer description updated successfully");
     t.end();
-    server.stop();
+    server.stop(function(){  });
   });
 });
 
@@ -59,7 +59,7 @@ test(file + "POST /timer/upsert with a NEW TIMER but NO start (fault tolerance)"
     t.equal(response.statusCode, 200, "New Timer Created: "+response.result.start);
     timer = response.result;
     t.end();
-    server.stop();
+    server.stop(function(){  });
   });
 });
 
@@ -75,6 +75,6 @@ test(file + "POST /timer/upsert with a NEW TIMER with start (fault tolerance)", 
     t.equal(response.statusCode, 200, "New Timer Created: "+response.result.start);
     timer = response.result;
     t.end();
-    server.stop();
+    server.stop(function(){  });
   });
 });

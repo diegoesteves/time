@@ -20,7 +20,7 @@ test(file + "POST /timer/new should FAIL when no Auth Token Sent", function(t) {
       t.equal(response.statusCode, 401, "New timer FAILS JTW Auth: "
         + response.result.message+'\n');
       t.end();
-      server.stop();
+      server.stop(function(){  });
     });
   });
 });
@@ -39,7 +39,7 @@ test(file + "POST /timer/new should FAIL when supplied VALID token but bad paylo
     t.equal(response.statusCode, 400, "New timer FAILS validation: "
       + response.result.message +'\n');
     t.end();
-    server.stop();
+    server.stop(function(){  });
   });
 });
 
@@ -64,7 +64,7 @@ test(file + "START a NEW Timer (no st sent by client)!", function(t) {
     server.inject(options, function(res) {
       t.equal(res.statusCode, 200, "New timer retrieved!"+'\n');
       t.end();
-      server.stop();
+      server.stop(function(){  });
     });
   });
 });
@@ -84,6 +84,6 @@ test(file + "START a NEW Timer with start time!", function(t) {
     var T = JSON.parse(res.payload);
     t.equal(res.statusCode, 200, "New timer started! " + T.start+'\n');
     t.end();
-    server.stop();
+    server.stop(function(){  });
   });
 });

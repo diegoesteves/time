@@ -47,7 +47,7 @@ test(file + "GET /timer/all to list all timers", function(t) {
       // console.log(T);
       t.equal(res.statusCode, 200, "Find all records for this person");
       t.true(T.timers.length > 1, "TRAVIS (Free/Slow) ElasticSearch (ONLY) Found: "+T.timers.length);
-      server.stop();
+      server.stop(function(){});
       t.end();
     });
   },1000)
@@ -76,7 +76,7 @@ test(file + "GET /timer/all should fail for Timmy no timers", function(t) {
         var T = JSON.parse(res.payload);
         t.equal(res.statusCode, 404, "Timmay! has no timers...");
         // t.equal(T.hits.total, 100, "100 records found");
-        server.stop();
+        server.stop(function(){  });
         t.end();
       });
     },200)

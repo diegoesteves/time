@@ -96,7 +96,7 @@ function finish(res, t, token){
 
   server.inject(options, function(res) {
     t.equal(res.statusCode, 200, "New timer retrieved!"+'\n');
-    server.stop();
+    server.stop(function(){  });
     t.end();
   });
 }

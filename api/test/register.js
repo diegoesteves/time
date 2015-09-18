@@ -16,7 +16,7 @@ test(file+" Bad request to /register (should fail - no payload!)", function(t) {
   server.inject(options, function(res) {
     t.equal(res.statusCode, 400, "No payload submitted");
     t.end();
-    server.stop();
+    server.stop(function(){});
   });
 });
 
@@ -30,7 +30,7 @@ test(file+" Register a new person", function(t) {
   server.inject(options, function(res) {
     t.equal(res.statusCode, 200, "Person registration is succesful");
     t.end();
-    server.stop();
+    server.stop(function(){});
   });
 });
 
@@ -43,7 +43,7 @@ test(file+" Attempt to register the same person twice", function(t) {
   server.inject(options, function(res) {
     t.equal(res.statusCode, 400, "Person registration fails");
     t.end();
-    server.stop();
+    server.stop(function(){});
   });
 });
 
@@ -60,6 +60,6 @@ test(file+" Attempt to register with short password (400)", function(t) {
   server.inject(options, function(res) {
     t.equal(res.statusCode, 400, "Longer password required");
     t.end();
-    server.stop();
+    server.stop(function(){});
   });
 });

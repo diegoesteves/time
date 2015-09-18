@@ -15,7 +15,7 @@ test(file + "GET timer /timer/1 (invalid timer id) should return 404", function(
     server.inject(options, function(response) {
       t.equal(response.statusCode, 404, "Record did not exist, as expected");
       t.end();
-      server.stop();
+      server.stop(function(){});
     });
   });
 });

@@ -32,7 +32,7 @@ test(file + "/register + login new person", function(t) {
       var T = JSON.parse(res.payload);
       t.equal(res.statusCode, 200, "New timer started! " + T.st);
       t.end();
-      server.stop();
+      server.stop(function(){});
     });
   });
 });
@@ -56,7 +56,7 @@ test(file + "LOGOUT", function(t) {
       server.inject(options, function(res) {
         t.equal(res.statusCode, 401, "Cannot create after logout");
         t.end();
-        server.stop();
+        server.stop(function(){});
       });
     })
   });
@@ -73,7 +73,7 @@ test(file + "Confirm Logged out person CANNOT CREATE", function(t) {
   server.inject(options, function(res) {
     t.equal(res.statusCode, 401, "New timer started! ");
     t.end();
-    server.stop();
+    server.stop(function(){});
   });
 });
 
@@ -86,6 +86,6 @@ test("test/logout.js -> /timer/:id ... Confirm Logged out person CANNOT ACCESS v
   server.inject(options, function(response) {
     t.equal(response.statusCode, 401, "Invalid JWT (person logged out)");
     t.end();
-    server.stop();
+    server.stop(function(){});
   });
 });

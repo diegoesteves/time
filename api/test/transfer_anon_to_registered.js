@@ -65,7 +65,7 @@ test(file + "Lookup the timer confirm the person is set", function(t){
       // console.log(res.result);
       t.equal(res.result.person, personid, "Timer created by "+personid);
       t.end();
-      server.stop();
+      server.stop(function(){  });
     });
   },1000);
 });
@@ -85,6 +85,6 @@ test(file + " Attempt to /login-or-register fails when no header or payload", fu
     // console.log(res.result);
     t.equal(res.statusCode, 400, "Fails (as expected - blocked by JOI)");
     t.end();
-    server.stop();
+    server.stop(function(){  });
   });
 });

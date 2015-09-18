@@ -1,6 +1,6 @@
 var JWT      = require('../lib/auth_jwt_sign.js');
 var transfer = require('../lib/transfer_anon_to_registered.js'); // see: http://git.io/vvf7k
-var find_all = require('../handlers/timer_find_all'); // see: http://git.io/vvf7k
+// var find_all = require('../handlers/timer_find_all'); // see: http://git.io/vvf7k
 var aguid    = require('aguid'); // used to derive the personid
 
 module.exports = function handler(req, reply) {

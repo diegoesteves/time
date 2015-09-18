@@ -2,8 +2,11 @@ var ES     = require('esta');
 var Bcrypt = require('bcrypt');
 var aguid  = require('aguid'); // https://github.com/ideaq/aguid
 
-module.exports = function validate (email, password, callback) {
-
+module.exports = function validate (event, email, password, callback) {
+  console.log(' - - - - - - - - - - - - - - - - - - - - ARGUMENTS - - - - -')
+  // console.log(arguments);
+  console.log(email, password, callback)
+  console.log(' - - - - - - - - - - - - - - - - - - - - ')
   var person =  {
     index: process.env.ES_INDEX,
     type: "person",

@@ -23,7 +23,7 @@ test(file+" Bad request to /login-or-register (should fail)", function(t) {
     // console.log(res);
     t.equal(res.statusCode, 400, res.result.message+" (fails JOI Validation)");
     t.end();
-    server.stop();
+    server.stop(function(){});
   });
 });
 
@@ -31,7 +31,7 @@ test(file+" Register a new person", function(t) {
   server.inject(options, function(res) {
     t.equal(res.statusCode, 200, "Person registration is succesful");
     t.end();
-    server.stop();
+    server.stop(function(){});
   });
 });
 
@@ -42,7 +42,7 @@ test(file+" Login with existing person", function(t) {
     // console.log(res.result);
     t.equal(res.statusCode, 200, "Everything is Awesome");
     t.end();
-    server.stop();
+    server.stop(function(){});
   });
 });
 
@@ -55,6 +55,6 @@ test(file + "Attempt to /login-or-register without any auth", function(t) {
     // console.log(res.result)
     t.equal(res.statusCode, 400, "Fails (as expected) MSG: " + res.result.message);
     t.end();
-    server.stop();
+    server.stop(function(){});
   });
 });
